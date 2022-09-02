@@ -14,13 +14,13 @@ namespace aspnetapp
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateWebHostBuilder(args).
                 UseKestrel().
                 UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT")).
-                Build();
+                Build(); 
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
