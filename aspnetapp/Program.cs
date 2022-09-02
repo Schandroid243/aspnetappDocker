@@ -11,38 +11,20 @@ namespace aspnetapp
 {
     public class Program
     {
-        // public static void Main(string[] args)
-        // {
-        //     CreateHostBuilder(args).Build().Run();
-        //         UseKestrel().
-        //         UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT")).
-        //         Build();
-        // }
-
-        // public static IHostBuilder CreateHostBuilder(string[] args) =>
-        //     Host.CreateDefaultBuilder(args)
-        //         .ConfigureWebHostDefaults(webBuilder =>
-        //         {
-        //             webBuilder.UseStartup<Startup>();
-        //         });
-
-         public static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).
+            CreateHostBuilder(args).Build().Run();
                 UseKestrel().
                 UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT")).
                 Build();
-
-            using (var scope = host.Services.CreateScope())
-            {
-                // extra configuration
-            }
-
-            host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+
     }
 }
